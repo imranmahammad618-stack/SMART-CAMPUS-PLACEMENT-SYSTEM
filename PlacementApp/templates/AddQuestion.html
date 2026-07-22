@@ -1,0 +1,99 @@
+{% load static %}
+<html>
+<head>
+<title>Smart Campus Placement System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript">
+	function validate(formObj)
+	{
+	if(formObj.t1.value.length==0)
+	{
+	alert("Please Enter job description");
+	formObj.t1.focus();
+	return false;
+	}
+	if(formObj.t2.value.length==0)
+	{
+	alert("Please Enter salary");
+	formObj.t2.focus();
+	return false;
+	}
+	if(formObj.t3.value.length==0)
+	{
+	alert("Please choose last applicant date");
+	formObj.t3.focus();
+	return false;
+	}	
+	return true;
+	}
+	</script>
+	
+</head>
+<style>
+body {
+  background-image: url("{% static 'images/back.jpg' %}");
+}
+</style>
+<body>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+        <h1><span>Smart Campus Placement System</span><small></small></h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_bg">
+        <div class="menu_nav">
+   <ul>      
+     <li><a href="{% url 'PostJob' %}"><font size="3" color="black">Post Jobs</a></li>
+	 <li><a href="{% url 'AddQuestion' %}"><font size="3" color="black">Add Test Question</a></li>
+	 <li><a href="{% url 'ViewPerformance' %}"><font size="3" color="black">View Selected Candidates Performance</a></li>
+	 <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</a></li>
+   </ul>          
+        </div>
+        <div class="hbg"><img src="{% static 'images/header_images.jpg' %}" width="1010" height="200" alt="" /></div>
+      				<center>
+<form name="f1" method="post" action={% url 'AddQuestionAction' %} onsubmit="return validate(this);">
+{% csrf_token %}<br/>
+   <h2><b>Add Question Screen</b></h2>
+   
+	<font size="" color="red"><center>{{ data|safe }}</center></font>
+						
+						<table align="center" width="30%" >
+			 <tr><td><font size="3" color="black">Question</td>
+			 <td><input type="text" name="t1" style="font-family: Comic Sans MS" size="70"></td></tr>
+
+			 <tr><td><font size="3" color="black">Option&nbsp;A</td><td><input type="text" name="t2" style="font-family: Comic Sans MS" size="60"/></td></tr>
+         
+		 
+
+			<tr><td><font size="3" color="black">Option&nbsp;B</td>
+			<td><input name="t3" type="text" size="60"></td></td></tr>
+
+			<tr><td><font size="3" color="black">Option&nbsp;C</td>
+			<td><input name="t4" type="text" size="60"></td></td></tr>
+
+			<tr><td><font size="3" color="black">Option&nbsp;D</td>
+			<td><input name="t5" type="text" size="60"></td></td></tr>
+
+		    
+		   <tr><td><font size="3" color="black">Correct&nbsp;Option</td><td><select name="t6">
+		   <option value="A">A</option>
+		   <option value="B">B</option>
+		   <option value="C">C</option>
+		   <option value="D">D</option>
+		   </select>
+		   </td></tr>
+		  
+		 
+			<tr><td></td><td><input type="submit" value="Submit"></td>
+			</table>
+				</div>	
+					
+				</div>
+				
+					
+	</body>
+</html>

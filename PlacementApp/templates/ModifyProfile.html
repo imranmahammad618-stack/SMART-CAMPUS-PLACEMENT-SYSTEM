@@ -1,0 +1,91 @@
+{% load static %}
+<html>
+<head>
+<title>Smart Campus Placement System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript">
+	function validate(formObj)
+	{
+	if(formObj.t1.value.length==0)
+	{
+	alert("Please update experience");
+	formObj.t1.focus();
+	return false;
+	}
+	if(formObj.t2.value.length==0)
+	{
+	alert("Please upload modified resume");
+	formObj.t2.focus();
+	return false;
+	}
+	return true;
+	}
+	</script>
+	
+</head>
+<style>
+body {
+  background-image: url("{% static 'images/back.jpg' %}");
+}
+</style>
+<body>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+        <h1><span>Smart Campus Placement System</span><small></small></h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_bg">
+        <div class="menu_nav">
+   <ul>      
+    <li><a href="{% url 'UpdateProfile' %}"><font size="3" color="black">Update Profile</a></li>
+	<li><a href="{% url 'Recommendation' %}"><font size="3" color="black">Job Recommendation ML</a></li>
+	<li><a href="{% url 'JobStatus' %}"><font size="3" color="black">View Job Status</a></li>
+	<li><a href="{% url 'Feedback' %}"><font size="3" color="black">Feedback</a></li>
+	 <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</a></li>
+   </ul>             
+        </div>
+        <div class="hbg"><img src="{% static 'images/header_images.jpg' %}" width="1010" height="200" alt="" /></div>
+      				<center>
+<form name="f1" method="post" action={% url 'ModifyProfileAction' %} enctype="multipart/form-data" onsubmit="return validate(this);">
+{% csrf_token %}<br/>
+   <h2><b>Update Profile Screen</b></h2>
+   
+	<font size="" color="red"><center>{{ data|safe }}</center></font>
+						
+						<table align="center" width="30%" >
+			 
+
+		    <tr><td><font size="3" color="black">Update&nbsp;Experience</td>
+			<td><input name="t1" type="text" size="70"></td></td></tr>
+
+			 <tr><td><font size="3" color="black">Upload&nbsp;Resume</td>
+			<td><input name="t2" type="file" size="10"></td></td></tr>
+
+			<tr><td><font size="3" color="black">Update&nbsp;Skills</td><td><select name="t3" multiple>
+		   <option value="C">C</option>
+		   <option value="CPP">CPP</option>
+		   <option value="Java">Java</option>
+		   <option value="Python">Python</option>
+		   <option value="Database">Database</option>
+		   <option value="Embedded">Embedded</option>
+			<option value="VLSI">VLSI</option>
+			<option value="Web Technologies">Web Technologies</option>
+			<option value="Android">Android</option>
+			<option value="IOS">IOS</option>
+			</select>
+		   </td></tr>
+		   		  
+		 
+			<tr><td></td><td><input type="submit" value="Submit"></td>
+			</table>
+				</div>	
+					
+				</div>
+				
+					
+	</body>
+</html>
